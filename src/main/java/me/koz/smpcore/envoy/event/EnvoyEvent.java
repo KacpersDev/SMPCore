@@ -25,8 +25,6 @@ public class EnvoyEvent implements Listener {
     public static int chests;
     public static boolean started = false;
     private final Random random = new Random();
-    public int dropped = 0;
-    public int current = 0;
 
     public EnvoyEvent(Main main) {
         this.main = main;
@@ -56,6 +54,7 @@ public class EnvoyEvent implements Listener {
         Bukkit.broadcastMessage(CC.translate(this.main.getConfig()
                 .getString("Envoy.messages.end")));
         started = false;
+        clearChests();
     }
 
     public void clearChests(){

@@ -15,7 +15,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -122,6 +121,8 @@ public class EnvoyHandler implements CommandExecutor, Listener {
             Location location = event.getBlock().getLocation();
             int current = this.main.getChest().getInt("chests");
             this.envoy.addChest(location, current);
+            player.sendMessage(CC.translate(this.main.getConfig()
+                    .getString("Envoy.messages.placed")));
         }
     }
 
@@ -133,8 +134,9 @@ public class EnvoyHandler implements CommandExecutor, Listener {
         if (Objects.requireNonNull(player.getInventory().getItemInMainHand()
                 .getItemMeta()).getDisplayName().equalsIgnoreCase(CC.translate(this.main
                 .getConfig().getString("Envoy.edit.name")))) {
-
             this.envoy.removeChest(event.getBlock().getLocation());
+            player.sendMessage(CC.translate(this.main.getConfig()
+                    .getString("Envoy.messages.removed")));
         }
     }
 }

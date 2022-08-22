@@ -5,6 +5,7 @@ import me.koz.smpcore.backpack.BackpackHandler;
 import me.koz.smpcore.commands.backpack.BackpackCommand;
 import me.koz.smpcore.commands.*;
 import me.koz.smpcore.envoy.handler.EnvoyHandler;
+import me.koz.smpcore.envoy.task.ServerTask;
 import me.koz.smpcore.utils.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -13,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 import org.checkerframework.checker.units.qual.C;
 
 import java.io.File;
@@ -27,6 +29,9 @@ public class Main extends JavaPlugin {
 
     @Getter
     private Config backpackConfig, dataConfig, loot, chest;
+
+    @Getter
+    private final ServerTask task = new ServerTask(this);
 
     @Getter
     private BackpackHandler backpackHandler;
@@ -61,6 +66,8 @@ public class Main extends JavaPlugin {
         heartCraft();
 
       //  runnable();
+        new ServerTask(this).runTaskTimer(this, 0L,20L);
+
 
         String prefix = "§3[" + getDescription().getName() + " " + getDescription().getVersion() + "] ";
         Bukkit.getConsoleSender().sendMessage(prefix + "§6=== ENABLE START ===");
@@ -71,6 +78,7 @@ public class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(prefix + "§aMade by §dKoz");
         Bukkit.getConsoleSender().sendMessage(
                 prefix + "§6=== ENABLE §aCOMPLETE §6(Took §d" + (System.currentTimeMillis() - duration) + "ms§6) ===");
+
     }
 
     void heartCraft(){
@@ -97,6 +105,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.OnInventoryCloseEvent(), this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.envoy.handler.EnvoyHandler(this),this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.envoy.event.EnvoyEvent(this),this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.envoy.listener.FlareListener(this),this);
     }
 
     private void registerCommands() {

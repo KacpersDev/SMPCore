@@ -31,11 +31,11 @@ Deathbans:
     beach_dbbeach: 900
 
 Envoy:
-  start: 30 # in minutes (starting every...)
+  start: 1 # in minutes (starting every...)
+  timer: 1 # in minutes (event timer...)
   wrong-usage:
     - "&f&m-----------------------------------------"
     - "&e/envoy"
-    - "&e/envoy additem <amount> "
     - "&e/envoy start"
     - "&e/envoy stop"
     - "&e/envoy edit"
@@ -53,3 +53,12 @@ Envoy:
     chest_taken: "&e%player% &chas claimed a create, there are %amount% crate left"
     end: "The event has ended"
     no-permission: "&cNo Permissions"
+    placed: "&7This is now a Supple Crate"
+    removed: "&7This Supply Crate is not destroyed"
+  flare:
+    item:
+    name:
+    lore:
+      - ""
+      - ""
+      - ""

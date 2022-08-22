@@ -23,7 +23,19 @@ public class Envoy {
     }
 
     public void giveFlare(Player target, int amount) {
-
+        ItemStack item = new ItemStack(Material.valueOf(this.main.getConfig()
+                .getString("Envoy.flare.item")));
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(CC.translate(this.main.getConfig()
+                .getString("Envoy.flare.name")));
+        ArrayList<String> lore = new ArrayList<>();
+        for (final String l : this.main.getConfig().getStringList("Envoy.flare.lore")) {
+            lore.add(CC.translate(l));
+        }
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+        item.setAmount(amount);
+        target.getInventory().addItem(item);
     }
 
     public void editMode(Player player){
@@ -40,6 +52,13 @@ public class Envoy {
 
             meta.setLore(lore);
             item.setItemMeta(meta);
+        }
+        for (int i = 0; i < this.main.getChest().getInt("chests"); i++) {
+            Location location = new Location(Bukkit.getWorld("World"),
+                    this.main.getChest().getInt("Chest." + i + ".x"),
+                    this.main.getChest().getInt("Chest." + i + ".y"),
+                    this.main.getChest().getInt("Chest." + i + ".z"));
+            location.getBlock().setType(Material.EMERALD_BLOCK);
         }
         player.getInventory().setItemInMainHand(item);
     }
@@ -73,6 +92,7 @@ public class Envoy {
 
     public void removeChest(Location location) {
         this.main.getChest().set("Chest." + getChestByLocation(location), null);
+        this.main.getChest().set("chests", (this.main.getChest().getInt("chests") - 1));
         this.main.getChest().save();
     }
 
@@ -85,6 +105,7 @@ public class Envoy {
                 return i;
             }
         }
+
         return 0;
     }
 }
