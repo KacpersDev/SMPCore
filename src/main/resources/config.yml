@@ -1,0 +1,54 @@
+Ranks-Menu:
+  Ranks-Info:
+    RankInfo:
+      Name: '&c&lRank Information'
+      Slot: 5
+      Item: NETHER_STAR
+      Data: 0
+      Lore:
+        - ''
+        - '&e&oCreate Ranks with Information for the players to view!'
+    Rank1:
+      Name: '&3&lPEASANT &bRank'
+      Slot: 11
+      Item: BIRCH_BOAT
+      Data: 0
+      Lore:
+        - ''
+        - '&e&l* &cKit Peasent'
+        - '&e&l* &63 Set homes'
+        - '&e&l* &b20 Hour Deathban'
+
+Prefix: "&7[&6Mod&7] &c"
+Deathbans:
+  default: 21600
+  permissions:
+    beach_dbpeasant: 18000
+    beach_dbvillager: 10800
+    beach_dblord: 7200
+    beach_dbnoble: 3600
+    beach_dbking: 1800
+    beach_dbbeach: 900
+
+Envoy:
+  start: 30 # in minutes (starting every...)
+  wrong-usage:
+    - "&f&m-----------------------------------------"
+    - "&e/envoy"
+    - "&e/envoy additem <amount> "
+    - "&e/envoy start"
+    - "&e/envoy stop"
+    - "&e/envoy edit"
+    - "&e/envoy flare give <player> <amount>"
+    - "&f&m-----------------------------------------"
+  edit:
+    item: "EMERALD_BLOCK"
+    name: "&aChest Creator"
+    lore:
+      - "&f&m-----------------------------------"
+      - "&7Place to create, mine to remove"
+      - "&f&m-----------------------------------"
+  messages:
+    started: "&aEvent has started, there are &e%chests% &atotal crates"
+    chest_taken: "&e%player% &chas claimed a create, there are %amount% crate left"
+    end: "The event has ended"

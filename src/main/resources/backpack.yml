@@ -1,0 +1,7 @@
+default-slots: 9
+slots: # max slots = 54
+  permission: 18
+  permission1: 27
+  permission2: 36
+  permission3: 45
+  permission4: 54

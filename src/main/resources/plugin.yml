@@ -1,0 +1,33 @@
+name: SMPCore
+main: me.koz.smpcore.Main
+version: 0.1
+api-version: 1.19
+permissions:
+  beach.sethealth:
+    default: op
+commands:
+  ranks:
+    description: View the Ranks Menu
+  mod:
+    description: Toggle staff mode.
+    aliases: [ staff ]
+  sc:
+    description: Toggle staff chat.
+  freeze:
+    description: Freeze a player.
+  ptp:
+    description: Teleport to random players.
+  clearchat:
+    description: Clear the chat.
+    aliases: [ cc ]
+  invsee:
+    description: View a players inventory
+  sethearts:
+    description: Set players hearts
+  hearts:
+    description: Give player a heart
+  backpack:
+    aliases:
+      - bp
+    description: Open a backpack.
+  envoy:

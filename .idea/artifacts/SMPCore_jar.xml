@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SMPCore:jar">
+    <output-path>$USER_HOME$/Desktop/localhost/plugins</output-path>
+    <root id="archive" name="SMPCore.jar">
+      <element id="module-output" name="SMPCore" />
+    </root>
+  </artifact>
+</component>
