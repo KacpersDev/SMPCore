@@ -52,3 +52,4 @@ Envoy:
     started: "&aEvent has started, there are &e%chests% &atotal crates"
     chest_taken: "&e%player% &chas claimed a create, there are %amount% crate left"
     end: "The event has ended"
+    no-permission: "&cNo Permissions"

@@ -1,0 +1,73 @@
+Loot:
+  0:
+    chance: 100
+    item: "DIRT"
+    name: ""
+    lore:
+      - ""
+      - ""
+      - ""
+    commands:
+      - ""
+      - "give %player% stone 64"
+      - ""
+  1:
+    chance: 100
+    item: "DIRT"
+    name: "DIRT" # It will make sure to not drop the item.
+    lore:
+      - "dfg"
+      - "dfg"
+      - "dfg"
+    commands:
+      - ""
+      - "give %player% diamond 1"
+      - ""
+  2:
+    chance: 60
+    item: "BEDROCK"
+    name: "dgdf"
+    lore:
+      - "dfg"
+      - "dfg"
+      - "dfg"
+    commands:
+      - ""
+      - "give %player% glass 1"
+      - ""
+  3:
+    chance: 50
+    item: "BEDROCK"
+    name: "dgdf"
+    lore:
+      - "dfg"
+      - "dfg"
+      - "dfg"
+    commands:
+      - ""
+      - "give %player% glass 1"
+      - ""
+  4:
+    chance: 30
+    item: "GOLD_BLOCK"
+    name: "dgdf"
+    lore:
+      - "dfg"
+      - "dfg"
+      - "dfg"
+    commands:
+      - ""
+      - "give %player% glass 1"
+      - ""
+  5:
+    chance: 20
+    item: "IRON_BLOCK"
+    name: "dgdf"
+    lore:
+      - "dfg"
+      - "dfg"
+      - "dfg"
+    commands:
+      - ""
+      - "give %player% cobblestone 1"
+      - ""

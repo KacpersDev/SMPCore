@@ -22,19 +22,6 @@ public class Envoy {
         this.main = main;
     }
 
-    public void addItem(ItemStack item, int amount) {
-        if (this.main.getLoot().getString("items") == null) {
-            this.main.getLoot().set("items", 0);
-            this.main.getLoot().save();
-        }
-
-        int slot = this.main.getLoot().getInt("items");
-        this.main.getLoot().set("Loot." + slot + ".amount", amount);
-        this.main.getLoot().set("Loot." + slot + ".item", item);
-        this.main.getLoot().set("items", (this.main.getLoot().getInt("items") + 1));
-        this.main.getLoot().save();
-    }
-
     public void giveFlare(Player target, int amount) {
 
     }

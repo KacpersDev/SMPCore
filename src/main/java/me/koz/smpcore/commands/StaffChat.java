@@ -17,7 +17,7 @@ public class StaffChat implements CommandExecutor {
         this.plugin = pl;
     }
 
-    public static ArrayList<Player> Insc = new ArrayList<Player>();
+    public static ArrayList<Player> Insc = new ArrayList<>();
 
     String prefix = CC.translate("&b[&aSC&b]");
 

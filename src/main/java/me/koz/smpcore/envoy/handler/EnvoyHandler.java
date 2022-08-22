@@ -45,29 +45,43 @@ public class EnvoyHandler implements CommandExecutor, Listener {
 
         if (args.length == 0) {
             player.sendMessage("Timer " + this.envoyTask.getTimer());
-        } else if (args[0].equalsIgnoreCase("additem")) {
-            if (args.length == 1) {
-                wrongUsage(player);
-            } else {
-                int amount = Integer.parseInt(args[1]);
-                ItemStack item = player.getInventory().getItemInMainHand();
-                this.envoy.addItem(item, amount);
-            }
         } else if (args[0].equalsIgnoreCase("start")) {
+
+            if (!player.hasPermission("beach.admin")) {
+                player.sendMessage(CC.translate(this.main.getConfig().getString("Envoy.messages.no-permission")));
+                return false;
+            }
+
             this.envoyTask.startEvent();
         } else if (args[0].equalsIgnoreCase("stop")) {
+
+            if (!player.hasPermission("beach.admin")) {
+                player.sendMessage(CC.translate(this.main.getConfig().getString("Envoy.messages.no-permission")));
+                return false;
+            }
+
             this.envoyTask.stopEvent();
         } else if (args[0].equalsIgnoreCase("edit")) {
+
+            if (!player.hasPermission("beach.admin")) {
+                player.sendMessage(CC.translate(this.main.getConfig().getString("Envoy.messages.no-permission")));
+                return false;
+            }
+
             if (!edit.contains(player.getUniqueId())) {
                 edit.add(player.getUniqueId());
                 this.envoy.editMode(player);
-                player.sendMessage("Enabled");
             } else {
                 edit.remove(player.getUniqueId());
                 this.envoy.removeEditMode();
-                player.sendMessage("Disabled");
             }
         } else if (args[0].equalsIgnoreCase("flare")) {
+
+            if (!player.hasPermission("beach.admin")) {
+                player.sendMessage(CC.translate(this.main.getConfig().getString("Envoy.messages.no-permission")));
+                return false;
+            }
+
             if (args.length == 1) {
                 wrongUsage(player);
             } else if (args[1].equalsIgnoreCase("give")) {

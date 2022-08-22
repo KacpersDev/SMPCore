@@ -10,9 +10,7 @@ public class Backpack {
 
     private UUID owner;
     private ItemStack[] items;
-
     int size;
-
     public void setSize(int size) {
         this.size = size;
     }
