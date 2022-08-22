@@ -56,9 +56,9 @@ Envoy:
     placed: "&7This is now a Supple Crate"
     removed: "&7This Supply Crate is not destroyed"
   flare:
-    item:
-    name:
+    item: "EMERALD_BLOCK"
+    name: "&aFlare"
     lore:
-      - ""
-      - ""
-      - ""
+      - "&f&m-------------------------------------------"
+      - "&7Right click to start a envoy event"
+      - "&f&m-------------------------------------------"

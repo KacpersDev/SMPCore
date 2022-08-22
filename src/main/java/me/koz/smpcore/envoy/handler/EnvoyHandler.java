@@ -5,6 +5,7 @@ import me.koz.smpcore.CC;
 import me.koz.smpcore.Main;
 import me.koz.smpcore.envoy.Envoy;
 import me.koz.smpcore.envoy.task.EnvoyTask;
+import me.koz.smpcore.envoy.task.ServerTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -26,6 +27,7 @@ public class EnvoyHandler implements CommandExecutor, Listener {
 
     private final Main main;
     private final EnvoyTask envoyTask;
+    private final ServerTask serverTask;
     private final Envoy envoy;
     public static ArrayList<UUID> edit = new ArrayList<>();
 
@@ -33,6 +35,7 @@ public class EnvoyHandler implements CommandExecutor, Listener {
         this.main = main;
         this.envoyTask = new EnvoyTask();
         this.envoy = new Envoy(Main.getInstance());
+        this.serverTask = new ServerTask(this.main);
     }
 
     @Override
@@ -43,7 +46,7 @@ public class EnvoyHandler implements CommandExecutor, Listener {
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            player.sendMessage("Timer " + this.envoyTask.getTimer());
+            player.sendMessage("Timer " + this.serverTask.getTimer());
         } else if (args[0].equalsIgnoreCase("start")) {
 
             if (!player.hasPermission("beach.admin")) {

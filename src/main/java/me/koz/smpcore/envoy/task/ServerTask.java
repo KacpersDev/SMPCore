@@ -50,4 +50,8 @@ public class ServerTask extends BukkitRunnable {
             }
         }.runTaskTimer(this.main,0L,20L);
     }
+
+    public int getTimer() {
+        return timer;
+    }
 }
