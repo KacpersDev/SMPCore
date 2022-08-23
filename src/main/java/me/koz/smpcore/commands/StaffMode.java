@@ -20,10 +20,10 @@ import java.util.UUID;
 
 public class StaffMode implements CommandExecutor {
 
-    public HashMap<Player, ItemStack[]> invsave = new HashMap<Player, ItemStack[]>();
-   public static ArrayList<UUID> STAFF = new ArrayList<UUID>();
+    public HashMap<Player, ItemStack[]> invsave = new HashMap<>();
+    public static ArrayList<UUID> STAFF = new ArrayList<>();
 
-    String prefix = CC.translate("&b[&aS&b]");
+    private final String prefix = CC.translate("&b[&aS&b]");
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
@@ -35,8 +35,8 @@ public class StaffMode implements CommandExecutor {
 
         ItemStack freezem = new ItemStack(Material.PACKED_ICE);
         ItemMeta icemeta = freezem.getItemMeta();
-        compassmeta.setDisplayName(CC.translate("&e&lFreeze"));
-        freezem.setItemMeta(compassmeta);
+        icemeta.setDisplayName(CC.translate("&e&lFreeze"));
+        freezem.setItemMeta(icemeta);
 
         ItemStack blazerodm = new ItemStack(Material.BLAZE_ROD);
         ItemMeta blazemeta = blazerodm.getItemMeta();
@@ -52,7 +52,7 @@ public class StaffMode implements CommandExecutor {
 
         if (!(p.hasPermission("beach.staffmode"))) {
             p.sendMessage(CC.translate("&cYou do not have permission to use this command."));
-            return true;
+            return false;
         }
 
         if (!STAFF.contains(p.getUniqueId())) {
@@ -83,9 +83,7 @@ public class StaffMode implements CommandExecutor {
             p.sendMessage(CC.translate(prefix + " &bStaff mode disabled."));
         }
         return true;
-
-
-      }
     }
+}
 
 

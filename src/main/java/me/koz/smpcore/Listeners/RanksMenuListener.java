@@ -11,7 +11,6 @@ public class RanksMenuListener implements Listener {
     @EventHandler
     public void MainMenu(InventoryClickEvent e) {
         if (e.getView().getTitle().contains(CC.translate("&6&lRanks Menu"))) {
-            Player p = (Player) e.getWhoClicked();
             e.setCancelled(true);
         }
     }

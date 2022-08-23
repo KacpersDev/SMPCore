@@ -10,17 +10,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class InventorySee implements CommandExecutor {
 
-    public static ArrayList<UUID> InvTarget = new ArrayList<UUID>();
-
+    //public static ArrayList<UUID> InvTarget = new ArrayList<>(); NEVER USED
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
 
 
         Player p = (Player) sender;
@@ -43,15 +43,13 @@ public class InventorySee implements CommandExecutor {
 
         if (!(sender.hasPermission("beach.staffmode"))) {
             sender.sendMessage(CC.translate("&cYou do not have permission to use this command."));
-            return true;
+            return false;
         }
-                p.openInventory(inv);
-                p.sendMessage(CC.translate("&aOpening &b" + target.getName() + "&a's inventory..."));
+        p.openInventory(inv);
+        p.sendMessage(CC.translate("&aOpening &b" + target.getName() + "&a's inventory..."));
         return true;
     }
-
-        }
-
+}
 
 
 

@@ -16,9 +16,6 @@ public class StaffChatListener implements Listener {
         this.plugin = pl;
     }
 
-    public StaffChatListener() {
-    }
-
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();

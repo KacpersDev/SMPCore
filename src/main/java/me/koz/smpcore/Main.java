@@ -14,26 +14,18 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
-import org.checkerframework.checker.units.qual.C;
 
 import java.io.File;
 import java.util.ArrayList;
 
+@Getter
 public class Main extends JavaPlugin {
 
-    @Getter
     private static Main instance;
-
     public ItemStack heart = new ItemStack(Material.RED_DYE);
-
-    @Getter
     private Config backpackConfig, dataConfig, loot, chest;
 
-    @Getter
     private final ServerTask task = new ServerTask(this);
-
-    @Getter
     private BackpackHandler backpackHandler;
 
     void loadItems(){
@@ -65,7 +57,6 @@ public class Main extends JavaPlugin {
         loadItems();
         heartCraft();
 
-      //  runnable();
         new ServerTask(this).runTaskTimer(this, 0L,20L);
 
 
@@ -95,12 +86,12 @@ public class Main extends JavaPlugin {
 
     private void registerEvents() {
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.RanksMenuListener(), this);
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.StaffChatListener(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.StaffChatListener(this), this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.StaffModeListener(), this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.FreezeListener(), this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.PlayerTeleportListener(), this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.InvseeListener(), this);
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.PlayerDeathEvents(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.PlayerDeathEvents(this), this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.OnPlayerJoinEvent(), this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.OnInventoryCloseEvent(), this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.envoy.handler.EnvoyHandler(this),this);
@@ -122,20 +113,8 @@ public class Main extends JavaPlugin {
         getCommand("envoy").setExecutor(new EnvoyHandler(this));
     }
 
-  //  public void runnable() {
-     //       new BukkitRunnable() {
-//
-         //       public void run() {
-        //            for (LivingEntity e : (getServer().getWorld("world")).getLivingEntities()) {
-            //            e.setCustomName(e.getType() + "\u00a7c " + ((int)e.getHealth() + "\u00a7c♥"));
-            //            e.setCustomNameVisible(true);
-           //         }
-          //      }
-
-      //      }.runTaskTimer(this,5,20L);
-     //   }
-
     public void onDisable() {
+        instance = null;
         long duration = System.currentTimeMillis();
         String prefix = "§3[" + getDescription().getName() + " " + getDescription().getVersion() + "] ";
         Bukkit.getConsoleSender().sendMessage(prefix + "§6=== DISABLING ===");
@@ -144,5 +123,9 @@ public class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(prefix + "§aMade by §dKoz");
         Bukkit.getConsoleSender().sendMessage(
                 prefix + "§6=== DISABLE §aCOMPLETE §6(Took §d" + (System.currentTimeMillis() - duration) + "ms§6) =");
+    }
+
+    public static Main getInstance() {
+        return instance;
     }
 }

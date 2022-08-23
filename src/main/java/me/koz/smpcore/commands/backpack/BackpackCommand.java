@@ -14,9 +14,10 @@ public class BackpackCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
+
         if(!(sender instanceof Player player)) {
             sender.sendMessage(CC.translate("&cYou must be a player to use this command."));
-            return true;
+            return false;
         }
         if(args.length == 0) {
             Backpack backpack = BackpackHandler.getBackpacks().get(player.getUniqueId());

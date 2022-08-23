@@ -13,7 +13,7 @@ public class CC {
     }
 
     public static List<String> translate(List<String> input) {
-        return (List<String>)input.stream().map(CC::translate).collect(Collectors.toList());
+        return input.stream().map(CC::translate).collect(Collectors.toList());
     }
 }
 

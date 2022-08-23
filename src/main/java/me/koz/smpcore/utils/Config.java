@@ -6,6 +6,7 @@ import lombok.SneakyThrows;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class Config extends YamlConfiguration {
     }
 
     @Override
-    public String getString(String path) {
+    public String getString(@NotNull String path) {
         try {
             if (super.getString(path).contains("&"))
                 return ChatColor.translateAlternateColorCodes('&', super.getString(path));
@@ -62,7 +63,7 @@ public class Config extends YamlConfiguration {
 
 
     @Override
-    public List<String> getStringList(String path) {
+    public @NotNull List<String> getStringList(@NotNull String path) {
 
         List<String> yes = super.getStringList(path).stream().filter(s -> s.contains("&"))
                 .map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());

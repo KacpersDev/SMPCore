@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,12 +17,11 @@ import java.util.UUID;
 public class Freeze implements CommandExecutor {
 
 
-    public static ArrayList<UUID> FROZEN = new ArrayList<UUID>();
-    public HashMap<Player, ItemStack[]> invsave = new HashMap<Player, ItemStack[]>();
-
+    public static ArrayList<UUID> FROZEN = new ArrayList<>();
+    public final HashMap<Player, ItemStack[]> invsave = new HashMap<>();
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
 
         if (sender.hasPermission("beach.staffmode")) {
             if (args.length == 0) {
