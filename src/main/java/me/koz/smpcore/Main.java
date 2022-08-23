@@ -1,7 +1,7 @@
 package me.koz.smpcore;
 
 import lombok.Getter;
-import me.koz.smpcore.backpack.BackpackHandler;
+import me.koz.smpcore.backpack.Backpack;
 import me.koz.smpcore.commands.backpack.BackpackCommand;
 import me.koz.smpcore.commands.*;
 import me.koz.smpcore.envoy.handler.EnvoyHandler;
@@ -26,7 +26,7 @@ public class Main extends JavaPlugin {
     private Config backpackConfig, dataConfig, loot, chest;
 
     private final ServerTask task = new ServerTask(this);
-    private BackpackHandler backpackHandler;
+    private final Backpack backpack = new Backpack(this);
 
     void loadItems(){
         ItemMeta mHeart = heart.getItemMeta();
@@ -46,18 +46,12 @@ public class Main extends JavaPlugin {
         loot = new Config(instance, "loot");
         chest = new Config(instance, "chest");
 
-        backpackHandler = new BackpackHandler();
-
-        BackpackHandler.loadAllBackpacks();
-
         File file = new File(getDataFolder(), "config.yml");
         if (!file.exists())
             saveDefaultConfig();
 
         loadItems();
         heartCraft();
-
-        new ServerTask(this).runTaskTimer(this, 0L,20L);
 
 
         String prefix = "§3[" + getDescription().getName() + " " + getDescription().getVersion() + "] ";
@@ -69,7 +63,7 @@ public class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(prefix + "§aMade by §dKoz");
         Bukkit.getConsoleSender().sendMessage(
                 prefix + "§6=== ENABLE §aCOMPLETE §6(Took §d" + (System.currentTimeMillis() - duration) + "ms§6) ===");
-
+        new ServerTask(this).runTaskTimer(this, 0L,20L);
     }
 
     void heartCraft(){
@@ -85,15 +79,15 @@ public class Main extends JavaPlugin {
     }
 
     private void registerEvents() {
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.RanksMenuListener(), this);
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.StaffChatListener(this), this);
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.StaffModeListener(), this);
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.FreezeListener(), this);
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.PlayerTeleportListener(), this);
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.InvseeListener(), this);
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.PlayerDeathEvents(this), this);
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.OnPlayerJoinEvent(), this);
-        getServer().getPluginManager().registerEvents(new me.koz.smpcore.Listeners.OnInventoryCloseEvent(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.listeners.RanksMenuListener(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.listeners.StaffChatListener(this), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.listeners.StaffModeListener(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.listeners.FreezeListener(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.listeners.PlayerTeleportListener(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.listeners.InvseeListener(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.listeners.PlayerDeathEvents(this), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.listeners.OnPlayerJoinEvent(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.listeners.BackpackListener(this), this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.envoy.handler.EnvoyHandler(this),this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.envoy.event.EnvoyEvent(this),this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.envoy.listener.FlareListener(this),this);
@@ -112,11 +106,12 @@ public class Main extends JavaPlugin {
         getCommand("invsee").setExecutor(new InventorySee());
         getCommand("sethearts").setExecutor(new SethealthEXE());
         getCommand("hearts").setExecutor(new HeartItem());
-        getCommand("backpack").setExecutor(new BackpackCommand());
+        getCommand("backpack").setExecutor(new BackpackCommand(this));
         getCommand("envoy").setExecutor(new EnvoyHandler(this));
     }
 
     public void onDisable() {
+        this.backpack.saveAllBackpacks();
         instance = null;
         long duration = System.currentTimeMillis();
         String prefix = "§3[" + getDescription().getName() + " " + getDescription().getVersion() + "] ";

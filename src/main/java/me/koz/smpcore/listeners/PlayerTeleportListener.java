@@ -1,4 +1,4 @@
-package me.koz.smpcore.Listeners;
+package me.koz.smpcore.listeners;
 
 import me.koz.smpcore.CC;
 import me.koz.smpcore.commands.StaffMode;

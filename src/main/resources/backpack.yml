@@ -1,7 +1,8 @@
 default-slots: 9
 slots: # max slots = 54
-  permission: 18
-  permission1: 27
-  permission2: 36
-  permission3: 45
-  permission4: 54
+  permission: 18 # backpack.18
+  permission1: 27 # backpack.27
+  permission2: 36 # backpack.36
+  permission3: 45 # backpack.45
+  permission4: 54 # backpack.54
+inventory-name: "&6&lBackpack"

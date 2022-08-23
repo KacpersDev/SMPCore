@@ -1,4 +1,4 @@
-package me.koz.smpcore.Listeners;
+package me.koz.smpcore.listeners;
 
 import lombok.Getter;
 import me.koz.smpcore.Main;

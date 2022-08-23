@@ -1,4 +1,4 @@
-package me.koz.smpcore.Listeners;
+package me.koz.smpcore.listeners;
 
 import me.koz.smpcore.commands.Freeze;
 import org.bukkit.entity.Player;

@@ -1,6 +1,5 @@
 package me.koz.smpcore.perks.listener;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
