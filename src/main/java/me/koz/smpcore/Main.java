@@ -97,10 +97,13 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.envoy.handler.EnvoyHandler(this),this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.envoy.event.EnvoyEvent(this),this);
         getServer().getPluginManager().registerEvents(new me.koz.smpcore.envoy.listener.FlareListener(this),this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.perks.listener.JellyLegsListener(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.perks.listener.AutoPickupListener(), this);
+        getServer().getPluginManager().registerEvents(new me.koz.smpcore.perks.listener.AutoSmeltListener(this), this);
     }
 
     private void registerCommands() {
-        getCommand("ranks").setExecutor(new RanksMenu());
+        getCommand("ranks").setExecutor(new RanksMenu(this));
         getCommand("mod").setExecutor(new StaffMode());
         getCommand("sc").setExecutor(new StaffChat(this));
         getCommand("freeze").setExecutor(new Freeze());

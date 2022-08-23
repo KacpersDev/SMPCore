@@ -30,6 +30,9 @@ public class FlareListener implements Listener {
 
         Player player = event.getPlayer();
         if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (player.getInventory().getItemInMainHand() == null
+            || player.getInventory().getItemInMainHand().getItemMeta() == null ||
+            player.getInventory().getItemInMainHand().getItemMeta().getDisplayName() == null) return;
             if (!player.getInventory().getItemInMainHand().getItemMeta().getDisplayName()
                     .equalsIgnoreCase(CC.translate(this.main.getConfig()
                             .getString("Envoy.flare.name")))) {

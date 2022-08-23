@@ -24,7 +24,7 @@ import java.util.List;
 public class RanksMenu implements CommandExecutor {
 
     private final Main main;
-    private RanksMenu(Main main){
+    public RanksMenu(Main main){
         this.main = main;
     }
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
